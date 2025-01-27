@@ -38,7 +38,7 @@ jobs:
         if: env.conflict == 'true'
         uses: peter-evans/create-pull-request@v5
         with:
-          commit-message: Sync: Update cloud-native-azure.omp.json from oh-my-posh
+          commit-message: "Sync: Update cloud-native-azure.omp.json from oh-my-posh"
           branch: sync/cloud-native-theme
           title: "Conflict: Sync cloud-native-azure.omp.json"
           body: |
