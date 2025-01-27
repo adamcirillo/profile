@@ -116,16 +116,16 @@
           "trailing_diamond": "\ue0b0",
           "type": "kubectl"
         },
-        /*
         {
-          "background": "#9ec3f0",
+          "background": "#34ebae",
           "foreground": "#000000",
-          "powerline_symbol": "\ue0b0",
-          "style": "powerline",
-          "template": " \uebd8 Subscription {{ .Name }} ({{ if .EnvironmentName | contains \"AzureCloud\" }}{{ \"Global\" }}{{ else }}{{ .EnvironmentName }}{{ end }}) ",
-          "type": "az"
+          "leading_diamond": "\ue0b6",
+          "style": "diamond",
+          "template": " \uf1e6 Talos {{ .TalosContext }} cluster {{ .TalosNodes }} nodes ",
+          "trailing_diamond": "\ue0b0",
+          "type": "talosctl"
         }
-        */
+
       ],
       "type": "prompt"
     },
