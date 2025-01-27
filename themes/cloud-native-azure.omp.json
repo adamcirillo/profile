@@ -121,7 +121,7 @@
           "foreground": "#000000",
           "leading_diamond": "\ue0b6",
           "style": "diamond",
-          "template": " \uf308 {{ .Context }} ",
+          "template": " \udb84\udcfe {{ .Context }} ",
           "trailing_diamond": "\ue0b0",
           "type": "talosctl"
         }
