@@ -117,18 +117,13 @@
           "type": "kubectl"
         },
         {
-          "type": "talosctl",
-          "style": "powerline",
+          "background": "#9ec3f0",
           "foreground": "#000000",
-          "background": "#ebcc34",
-          "leading_diamond": "\ue0b6",
-          "trailing_diamond": "\ue0b0",
-          "properties": {
-            "display_mode": "context",
-            "display_namespace": true,
-            "always_enabled": true
+          "powerline_symbol": "\ue0b0",
+          "style": "powerline",
+          "template": " \uebd8 Subscription {{ .Name }} ({{ if .EnvironmentName | contains \"AzureCloud\" }}{{ \"Global\" }}{{ else }}{{ .EnvironmentName }}{{ end }}) ",
+          "type": "az"
         }
-
       ],
       "type": "prompt"
     },
