@@ -29,13 +29,13 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add themes/cloud-native-azure.omp.json
           git commit -m "Sync: Update cloud-native-azure.omp.json from oh-my-posh" || echo "No changes to commit"
-          git pull --rebase || echo "::set-output name=conflict::true"
-          git push || echo "::set-output name=conflict::true"
+          git pull --rebase || echo "conflict=true" >> $GITHUB_ENV
+          git push || echo "conflict=true" >> $GITHUB_ENV
         continue-on-error: true
 
       # Step 4: Handle conflicts by creating a pull request
       - name: Create pull request on conflict
-        if: steps.commit.outputs.conflict == 'true'
+        if: env.conflict == 'true'
         uses: peter-evans/create-pull-request@v5
         with:
           commit-message: Sync: Update cloud-native-azure.omp.json from oh-my-posh
