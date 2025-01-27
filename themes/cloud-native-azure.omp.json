@@ -116,14 +116,16 @@
           "trailing_diamond": "\ue0b0",
           "type": "kubectl"
         },
-        /*{
+        /*
+        {
           "background": "#9ec3f0",
           "foreground": "#000000",
           "powerline_symbol": "\ue0b0",
           "style": "powerline",
           "template": " \uebd8 Subscription {{ .Name }} ({{ if .EnvironmentName | contains \"AzureCloud\" }}{{ \"Global\" }}{{ else }}{{ .EnvironmentName }}{{ end }}) ",
           "type": "az"
-        }*/
+        }
+        */
       ],
       "type": "prompt"
     },
