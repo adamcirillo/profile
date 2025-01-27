@@ -117,13 +117,16 @@
           "type": "kubectl"
         },
         {
-          "background": "#34ebae",
+          "type": "talosctl",
+          "style": "powerline",
           "foreground": "#000000",
+          "background": "#ebcc34",
           "leading_diamond": "\ue0b6",
-          "style": "diamond",
-          "template": " \uf1e6 Talos {{ .TalosContext }} cluster {{ .TalosNodes }} nodes ",
           "trailing_diamond": "\ue0b0",
-          "type": "talosctl"
+          "properties": {
+            "display_mode": "context",
+            "display_namespace": true,
+            "always_enabled": true
         }
 
       ],
