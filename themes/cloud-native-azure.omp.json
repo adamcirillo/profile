@@ -121,10 +121,10 @@
           "foreground": "#000000",
           "leading_diamond": "\ue0b6",
           "style": "diamond",
-          "template": " \uf308 {{ .Context }}",
+          "template": " \uf308 {{ .Context }} ",
           "trailing_diamond": "\ue0b0",
           "type": "talosctl"
-          }
+        }
       ],
       "type": "prompt"
     },
