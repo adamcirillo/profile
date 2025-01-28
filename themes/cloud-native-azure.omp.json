@@ -117,12 +117,49 @@
           "type": "kubectl"
         },
         {
-          "background": "#9ec3f0",
+          "background": "#ebcc34",
           "foreground": "#000000",
-          "powerline_symbol": "\ue0b0",
-          "style": "powerline",
-          "template": " \uebd8 Subscription {{ .Name }} ({{ if .EnvironmentName | contains \"AzureCloud\" }}{{ \"Global\" }}{{ else }}{{ .EnvironmentName }}{{ end }}) ",
-          "type": "az"
+          "leading_diamond": "\ue0b6",
+          "style": "diamond",
+          "template": " \udb84\udcfe {{ .Context }} ",
+          "trailing_diamond": "\ue0b0",
+          "type": "talosctl"
+        },
+        {
+          "background": "#61dafb",
+          "foreground": "#000000",
+          "leading_diamond": "\ue0b6",
+          "style": "diamond",
+          "template": " \uf308 Docker {{.Context}} ",
+          "trailing_diamond": "\ue0b0",
+          "type": "docker"
+        },
+        {
+          "background": "#ff6f61",
+          "foreground": "#ffffff",
+          "leading_diamond": "\ue0b6",
+          "style": "diamond",
+          "template": " \uf17c ArgoCD {{ .Name }} {{ .User }}@{{ .Server }} ",
+          "trailing_diamond": "\ue0b0",
+          "type": "argocd"
+        },
+        {
+          "background": "#00bfa5",
+          "foreground": "#000000",
+          "leading_diamond": "\ue0b6",
+          "style": "diamond",
+          "template": " \uf537 Helm: {{ .Version }} ",
+          "trailing_diamond": "\ue0b0",
+          "type": "helm"
+        },
+        {
+          "background": "#623ce8",
+          "foreground": "#ffffff",
+          "leading_diamond": "\ue0b6",
+          "style": "diamond",
+          "template": " \ue21c Terraform v{{ .Version }} ",
+          "trailing_diamond": "\ue0b0",
+          "type": "terraform"
         }
       ],
       "type": "prompt"
