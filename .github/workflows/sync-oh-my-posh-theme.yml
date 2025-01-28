@@ -1,48 +1,36 @@
-name: Sync Cloud Native Azure Theme
+name: Sync Oh My Posh Theme
 
 on:
-  # Run the workflow every day at midnight UTC
   schedule:
-    - cron: '0 0 * * *'
-  # Allow manual triggering of the workflow
-  workflow_dispatch:
+    - cron: "0 * * * *" # Runs hourly
+  workflow_dispatch: # Allows manual triggering
 
 jobs:
   sync-theme:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout your repository
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Checkout Repository
+      uses: actions/checkout@v3
 
-      # Step 2: Fetch the latest theme file from the source repository
-      - name: Fetch oh-my-posh theme file
-        run: |
-          mkdir -p themes
-          curl -o themes/cloud-native-azure.omp.json https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/cloud-native-azure.omp.json
+    - name: Download Latest Theme
+      run: |
+        curl -o themes/cloud-native-azure.omp.json https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/cloud-native-azure.omp.json
 
-      # Step 3: Commit and attempt to merge changes
-      - name: Commit and push changes
-        id: commit
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add themes/cloud-native-azure.omp.json
-          git commit -m "Sync: Update cloud-native-azure.omp.json from oh-my-posh" || echo "No changes to commit"
-          git pull --rebase || echo "conflict=true" >> $GITHUB_ENV
-          git push || echo "conflict=true" >> $GITHUB_ENV
-        continue-on-error: true
+    - name: Check for Changes
+      id: changes
+      run: |
+        git diff --exit-code || echo "changes detected"
 
-      # Step 4: Handle conflicts by creating a pull request
-      - name: Create pull request on conflict
-        if: env.conflict == 'true'
-        uses: peter-evans/create-pull-request@v5
-        with:
-          commit-message: "Sync: Update cloud-native-azure.omp.json from oh-my-posh"
-          branch: sync/cloud-native-theme
-          title: "Conflict: Sync cloud-native-azure.omp.json"
-          body: |
-            This pull request was created because a conflict occurred while syncing the `cloud-native-azure.omp.json` file from the [oh-my-posh](https://github.com/JanDeDobbeleer/oh-my-posh) repository.
+    - name: Create Pull Request
+      if: steps.changes.outcome != 'success' # Only run if changes are detected
+      uses: peter-evans/create-pull-request@v5
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        commit-message: "Update cloud-native-azure.omp.json from oh-my-posh"
+        branch: update-theme
+        title: "Update Theme File"
+        body: |
+          This PR updates the theme file `cloud-native-azure.omp.json` with the latest version from the upstream repository.
+          Please review and merge if applicable.
 
-            Please review the changes and resolve the conflict manually.
